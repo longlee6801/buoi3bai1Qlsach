@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category List</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link th:replace="layout :: link-css"/>
+</head>
+<body>
+<div th:replace="layout :: header"></div>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category : ${categories}">
+            <td th:text="${category.name}"></td>
+            <!--      <td th:text="${book.category.name}"></td>-->
+            <td>
+                <a th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a>
+                <a th:href="@{/categories/delete/{id}(id=${book.id})}"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--<div th:replace="fragments/footer :: footer"></div>-->
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Book;
+import com.example.demo.entity.Category;
 import com.example.demo.services.BookService;
 import com.example.demo.services.CategoryService;
 import jakarta.validation.Valid;
@@ -15,34 +16,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/books")
-public class BookController {
+@RequestMapping("/categories")
+public class CategoryController {
     @Autowired
     private CategoryService categoryService;
     @Autowired
     private BookService bookService;
     @GetMapping
-    public String showAllBooks(Model model){
-        List<Book> books = new ArrayList<>();
-        books  = bookService.getAllBooks();
-        model.addAttribute("books", books);
-        return "book/list";
+    public String showAllCategories(Model model){
+        List<Category> categories = new ArrayList<>();
+        categories  = categoryService.getAllCategories();
+        model.addAttribute("categories", categories);
+        return "category/category-list";
     }
-    @GetMapping("/add")
-    public String addBookForm(Model model){
-        model.addAttribute("book", new Book());
-        model.addAttribute("Categories", categoryService.getAllCategories());
-        return "book/add";
+    @PostMapping("/category-add")
+    public String addCategoryForm(@ModelAttribute("category") Model model){
+        model.addAttribute("category", new Category());
+        return "category/category-add";
     }
-    @PostMapping("/add")
-    public String addBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult, Model model){
-        //Truong hop co loi rang buoc thi tra lai view add
-        if (bindingResult.hasErrors()){
-            model.addAttribute("categories", categoryService.getAllCategories());
-            return "book/add";
-        }
-        bookService.addBook(book);
-        return "redirect:/books";
+    @GetMapping("/category-add")
+    public String addCategory(@ModelAttribute("category") Model model){
+        model.addAttribute("category", new Category());
+        return "category/category-add";
     }
     @GetMapping("/edit/{id}")
     public String editBook(@PathVariable("id") Long id, Model model) {
