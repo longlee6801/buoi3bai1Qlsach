@@ -9,19 +9,21 @@
 <body>
 <div th:replace="layout :: header"></div>
 <div class="container">
+    <h1 th:text="${title}"></h1>
     <table class="table">
         <thead>
         <tr>
-            <th>name</th>
+            <th>ID</th>
+            <th>Name</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="category : ${categories}">
+            <td th:text="${category.id}"></td>
             <td th:text="${category.name}"></td>
-            <!--      <td th:text="${book.category.name}"></td>-->
             <td>
                 <a th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a>
-                <a th:href="@{/categories/delete/{id}(id=${book.id})}"
+                <a th:href="@{/categories/delete/{id}(id=${category.id})}"
                    onclick="return confirm('Are you sure?')">Delete</a>
             </td>
         </tr>
