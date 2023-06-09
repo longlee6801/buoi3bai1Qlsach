@@ -27,7 +27,7 @@ public class Book {
     private Double price;
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @ValidCategoryId
+//    @ValidCategoryId
     private Category category;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

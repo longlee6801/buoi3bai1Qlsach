@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
@@ -12,18 +12,18 @@
 <th:block th:replace="layout :: header"></th:block>
 <div class="container">
   <h1>Edit Book</h1>
-  <input type="hidden" th:field="*{id}">
-  <form th:action="@{/books/add}" th:object="${book}" method="post" enctype="multipart/form-data">
+  <form th:action="@{/books/add}" th:object="${book}" method="post" >
+    <input type="hidden" th:field="*{id}">
     <div class="col-6 mb-3">
-      <label class="form-label" for="title">Title:</label>
+      <label class="form-label" for="title">Title</label>
       <input class="form-control" type="text" th:field="*{title}" id="title">
     </div>
     <div class="col-6 mb-3">
-      <label class="form-label" for="author">Author:</label>
+      <label class="form-label" for="author">Author</label>
       <input class="form-control" type="text" th:field="*{author}" id="author">
     </div>
     <div class="col-6 mb-3">
-      <label class="form-label" for="price">Price:</label>
+      <label class="form-label" for="price">Price</label>
       <input class="form-control" type="text" th:field="*{price}" id="price">
     </div>
     <div class="col-6 mb-3">
@@ -35,10 +35,9 @@
                 th:text="${category.name}"></option>
       </select>
     </div>
-    <input type="submit" class="btn btn-primary" value="Save">
+    <input type="submit" class="btn btn-primary" value="Update">
   </form>
   <br>
-  <a th:href="@{/books}">Back To List</a>
 </div>
 <th:block th:replace="layout :: footer"></th:block>
 </body>
